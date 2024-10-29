@@ -1,0 +1,14 @@
+# Ignore node_modules in frontend
+frontend/node_modules/
+
+# Ignore vendor in backend (PHP dependencies)
+backend/vendor/
+
+# Ignore build files (if applicable)
+frontend/build/
+backend/cache/
+
+# Other system files
+.DS_Store
+*.log
+.env

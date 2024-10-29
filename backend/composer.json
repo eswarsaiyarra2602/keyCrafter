@@ -1,0 +1,16 @@
+{
+    "name": "eswarsaiyarra/password-generator",
+    "description": "A random password generator built with PHP",
+    "autoload": {
+        "psr-4": {
+            "Eswarsaiyarra\\PasswordGenerator\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Eswar Sai Yarra",
+            "email": "yarraeswarsai@gmail.com"
+        }
+    ],
+    "require": {}
+}
