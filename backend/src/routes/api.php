@@ -10,7 +10,7 @@ if ($uri === '/api/generate-password' && $_SERVER['REQUEST_METHOD'] === 'POST') 
     error_log("Input Data: " . print_r($data, true));
     try {
         $password = PasswordController::generatePassword($data);
-        echo json_encode(["password" => $password]);
+        echo json_encode($password);
     } catch (Exception $e) {
         http_response_code(400);
         echo json_encode(["error" => $e->getMessage()]);

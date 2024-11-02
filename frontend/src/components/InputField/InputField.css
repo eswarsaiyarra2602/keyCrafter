@@ -14,7 +14,10 @@
     background-color: green;
     color: white;
   }
-  
+  .medium{
+    background-color: orange;
+    color: white;
+  }
   .very-weak {
     background-color: darkred;
     color: white;

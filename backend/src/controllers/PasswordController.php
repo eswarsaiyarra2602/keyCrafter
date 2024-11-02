@@ -50,7 +50,7 @@ class PasswordController
 
         $score = 0;
         if ($length >= 8) $score += 1;
-        if ($length >= 12) $score += 1;
+        if ($length >= 16) $score += 1;
         if ($hasLowercase) $score += 1;
         if ($hasUppercase) $score += 1;
         if ($hasNumbers) $score += 1;
