@@ -1,0 +1,26 @@
+/* Assuming you are using Tailwind CSS, you can customize these classes in your CSS file or Tailwind config. */
+.badge {
+    padding: 0.5em 1em;
+    border-radius: 1em;
+    font-weight: bold;
+  }
+  
+  .weak {
+    background-color: red;
+    color: white;
+  }
+  
+  .strong {
+    background-color: green;
+    color: white;
+  }
+  
+  .very-weak {
+    background-color: darkred;
+    color: white;
+  }
+  
+  .very-strong {
+    background-color: darkgreen;
+    color: white;
+  }
