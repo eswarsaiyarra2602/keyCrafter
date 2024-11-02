@@ -10,7 +10,7 @@
     const [uppercase, setUppercase] = useState(true);
     const [numbers, setNumbers] = useState(true);
     const [specialChars, setSpecialChars] = useState(true);
-    const [strength, setStrength] = useState('weak');
+    const [strength, setStrength] = useState('');
 
     // Function to fetch a new password from the server
     const fetchPassword = async () => {
