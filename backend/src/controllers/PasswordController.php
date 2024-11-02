@@ -33,7 +33,6 @@ class PasswordController
         for ($i = 0; $i < $data['length']; $i++) {
             $password .= $characterPool[random_int(0, $maxIndex)];
         }
-
         return $password;
     }
 }

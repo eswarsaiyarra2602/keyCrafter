@@ -1,10 +1,14 @@
-import './App.css';
+// Ensure curly bracesimport './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Home} from './pages/Home'; 
 
 function App() {
   return (
-    <div className="App">
-      app
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/home' element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
