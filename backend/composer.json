@@ -12,5 +12,8 @@
             "email": "yarraeswarsai@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "vlucas/phpdotenv": "^5.6",
+        "firebase/php-jwt": "^6.10"
+    }
 }

@@ -37,6 +37,7 @@ class PasswordController
             'password' => $password,
             'strength' => $strength
         ];
+        exit;
     }
 
 
