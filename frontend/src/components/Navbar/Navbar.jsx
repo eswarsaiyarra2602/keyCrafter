@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AiOutlineBell, AiOutlineUser, AiOutlineSun, AiOutlineMoon } from 'react-icons/ai'; // Import necessary icons from react-icons
-
+import { Link } from 'react-router-dom';
 function Navbar() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -24,11 +24,12 @@ function Navbar() {
               <AiOutlineBell className="h-6 w-6" />
               <span className="ml-2">Notifications</span>
             </button>
-            {/* Sign In button */}
-            <button className="flex items-center text-white hover:text-gray-300">
-              <AiOutlineUser className="h-6 w-6" />
-              <span className="ml-2">Sign In</span>
-            </button>
+            <Link to="/login">
+              <button className="flex items-center text-white hover:text-gray-300">
+                <AiOutlineUser className="h-6 w-6" />
+                <span className="ml-2">Sign In</span>
+              </button>
+          </Link>
           </div>
         </div>
       </div>
