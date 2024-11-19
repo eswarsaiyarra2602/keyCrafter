@@ -1,10 +1,29 @@
-import { useState } from 'react';
-import { AiOutlineBell, AiOutlineUser, AiOutlineSun, AiOutlineMoon } from 'react-icons/ai'; // Import necessary icons from react-icons
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { AiOutlineBell, AiOutlineUser, AiOutlineSun, AiOutlineMoon } from 'react-icons/ai';
+import { Link, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie'; // Import js-cookie to handle cookies
+
 function Navbar() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check for the auth token in cookies
+    const token = Cookies.get('authToken'); // Get the token from cookies
+    if (token) {
+      setIsAuthenticated(true);
+    }
+  }, []);
 
   const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
+
+  const handleSignOut = () => {
+    // Remove token from cookies and set isAuthenticated to false
+    Cookies.remove('authToken');
+    setIsAuthenticated(false);
+    navigate('/login'); // Redirect to login page after sign out
+  };
 
   return (
     <nav className="bg-gray-800">
@@ -24,16 +43,26 @@ function Navbar() {
               <AiOutlineBell className="h-6 w-6" />
               <span className="ml-2">Notifications</span>
             </button>
-            <Link to="/login">
-              <button className="flex items-center text-white hover:text-gray-300">
+
+            {/* Conditionally render Sign In or Sign Out */}
+            {isAuthenticated ? (
+              <button onClick={handleSignOut} className="flex items-center text-white hover:text-gray-300">
                 <AiOutlineUser className="h-6 w-6" />
-                <span className="ml-2">Sign In</span>
+                <span className="ml-2">Sign Out</span>
               </button>
-          </Link>
+            ) : (
+              <Link to="/login">
+                <button className="flex items-center text-white hover:text-gray-300">
+                  <AiOutlineUser className="h-6 w-6" />
+                  <span className="ml-2">Sign In</span>
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
     </nav>
   );
 }
+
 export default Navbar;

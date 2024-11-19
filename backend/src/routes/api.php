@@ -19,13 +19,12 @@ if ($uri === '/api/generate-password' && $_SERVER['REQUEST_METHOD'] === 'POST') 
 
 else if($uri === '/api/auth/login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents("php://input"), true);
-    error_log("Input Data: " . print_r($data, true));
     try {
         $token = AuthController::login($data);
         echo json_encode($token);
     } catch (Exception $e) {
         http_response_code(400);
-        echo json_encode(["error" => $e->getMessage()]);
+        echo json_encode(["message" => $e->getMessage()]);
     }
 }
 else if($uri === '/api/auth/register' && $_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -36,7 +35,7 @@ else if($uri === '/api/auth/register' && $_SERVER['REQUEST_METHOD'] === 'POST') 
         echo json_encode($token);
     } catch (Exception $e) {
         http_response_code(400);
-        echo json_encode(["error" => $e->getMessage()]);
+        echo json_encode(["message" => $e->getMessage()]);
     }
 }
 else {
