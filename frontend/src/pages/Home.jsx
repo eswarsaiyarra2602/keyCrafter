@@ -11,7 +11,7 @@ export const Home = () => {
       <Title text="Instantly generate a secure password using the latest KeyCrafter Online Tool" />
       <InputField/>
       <Card></Card>
-      <Footer></Footer>
+      <Footer></Footer> 
     </div>
   );
 };
