@@ -4,7 +4,7 @@ require_once __DIR__ . '/../models/User.php';
 use Firebase\JWT\JWT;
 
 class AuthController {
-    private static $secretKey = 'your-secret-key'; // Replace with your secure secret key
+    private static $secretKey = 'your-secret-key'; 
     private static $algorithm = 'HS256'; // Algorithm for JWT encoding
 
     public static function login($data) {
@@ -13,45 +13,31 @@ class AuthController {
         }
         
         $user = User::findByEmail($data['email']);
-        if (!$user) {
-            throw new Exception("Invalid email or password");
-        }
-
-        if (!password_verify($data['password'], $user['password'])) {
+        if (!$user || !password_verify($data['password'], $user['password'])) {
             throw new Exception("Invalid email or password.");
         }
 
         $payload = [
             "iss" => "your-domain.com", 
             "iat" => time(),
-            "exp" => time() + 3600, // Token expiry (1 hour)
+            "exp" => time() + 3600, 
             "userId" => $user['userId']
         ];
         
-        $token = JWT::encode($payload, self::$secretKey, self::$algorithm);
-        return ["token" => $token];
+        return ["token" => JWT::encode($payload, self::$secretKey, self::$algorithm)];
     }
 
-    // Register function
     public static function register($data) {
-        // Check if required fields are provided
         if (empty($data['username']) || empty($data['userId']) || empty($data['password']) || empty($data['email'])) {
             throw new Exception("Username, email, and password are required.");
         }
 
-        if (User::findByEmail($data['email'])) {
+        if (User::findByEmail($data['email']) || User::findByUserId($data['userId'])) {
             throw new Exception("User already exists.");
         }
 
-        // Create new user
-        $userId = User::create([
-            'userId' => $data['userId'],
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => $data['password']
-        ]);
+        $userId = User::create($data);
 
-        // Generate JWT token for the new user
         $payload = [
             "iss" => "your-domain.com",
             "iat" => time(),
@@ -59,7 +45,6 @@ class AuthController {
             "userId" => $userId
         ];
         
-        $token = JWT::encode($payload, self::$secretKey, self::$algorithm);
-        return ["token" => $token];
+        return ["token" => JWT::encode($payload, self::$secretKey, self::$algorithm)];
     }
 }
