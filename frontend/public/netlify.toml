@@ -1,0 +1,6 @@
+[build]
+  publish = "frontend/build"  # Path to the built files
+  command = "npm run build"    # Command to build the project
+
+[dev]
+  command = "npm start"         # Command to run your app in development mode
